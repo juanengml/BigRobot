@@ -35,9 +35,10 @@ class Move:
       arduino.write('p')
 
 class Sensores:
-  def __init__(self,distancia, bateria):
+  def __init__(self,distancia, bateria,gps):
     self.distancia = distancia
     self.bateria = bateria
+    self.gps = gps
 
   def bat(self):
    if self.bateria == True:
@@ -46,4 +47,13 @@ class Sensores:
    else: print "FAIL BAT"
 
   def distance(self):
-     pass
+     if self.distancia == True:
+            cm = arduino.write("distancia")
+            cm = cm
+            return cm
+  def gps:
+    if self.gps == True:
+        # GET COORDINATES ON GPS SENSOR
+        #
+        #
+        pass
