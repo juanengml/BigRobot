@@ -79,9 +79,11 @@ for i in range(0,20):
     (grabbed, Frame) = camera.read()
 
 while True:
+    
     try:
       (grabbed, Frame) = camera.read()
-    
+      if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
       if (grabbed):
           Direcao,QtdeLinhas = TrataImagem(Frame)
           if (QtdeLinhas == 0):
@@ -96,4 +98,5 @@ while True:
               print "Exatamente na linha de referencia!"      
     except (KeyboardInterrupt):
           print "STOP MODA FOCA"
+          pass
 exit(1)   
