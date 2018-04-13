@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-import Adafruit_BBIO.GPIO as GPIO
+
 
 video_capture = cv2.VideoCapture("simulacao.mp4")
 video_capture.set(3, 160)
@@ -21,9 +21,10 @@ while(True):
     mask = cv2.erode(thresh1, None, iterations=2)
     mask = cv2.dilate(mask, None, iterations=2)
     # Find the contours of the frame
-    contours,hierarchy = cv2.findContours(mask.copy(), 1, cv2.CHAIN_APPROX_NONE)
+    #contours,hierarchy = cv2.findContours(mask.copy(), 1, cv2.CHAIN_APPROX_NONE)
+    image, contours, _ = cv2.findContours(mask.copy(), 1, cv2.CHAIN_APPROX_SIMPLE)
     # Find the biggest contour (if detected)
-   if len(contours) > 0:
+    if len(contours) > 0:
         c = max(contours, key=cv2.contourArea)
         M = cv2.moments(c)
         cx = int(M['m10']/M['m00'])
@@ -34,18 +35,22 @@ while(True):
         print cx
         print cy
         if cx >= 120:
-            GPIO.output("P8_10", GPIO.HIGH)
-            GPIO.output("P9_11", GPIO.LOW)
+            #GPIO.output("P8_10", GPIO.HIGH)
+            #GPIO.output("P9_11", GPIO.LOW)
+            print "DIREITA"
         if cx < 120 and cx > 50:
-            GPIO.output("P8_10", GPIO.LOW)
-            GPIO.output("P9_11", GPIO.LOW)
+            #GPIO.output("P8_10", GPIO.LOW)
+            #GPIO.output("P9_11", GPIO.LOW)
+            print "PARAR ! "
         if cx <= 50:
-            GPIO.output("P8_10", GPIO.LOW)
-            GPIO.output("P9_11", GPIO.HIGH)
+            #GPIO.output("P8_10", GPIO.LOW)
+            #GPIO.output("P9_11", GPIO.HIGH)
+            print "ESQUERDA"
     else:
-        GPIO.output("P8_10", GPIO.HIGH)
-        GPIO.output("P9_11", GPIO.HIGH)
+        #GPIO.output("P8_10", GPIO.HIGH)
+        #GPIO.output("P9_11", GPIO.HIGH)
+        print "PARAR 2 ! "
     #Display the resulting frame
     cv2.imshow('frame',crop_img)
-   if cv2.waitKey(1) & 0xFF == ord('q'):
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
