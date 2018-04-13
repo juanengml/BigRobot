@@ -12,7 +12,7 @@ def qr_decode(img):
  raw = converted_image.tobytes()  # Get image data.
  width, height = converted_image.size  # Get image size.
  code = zbarlight.qr_code_scanner(raw, width, height)
- return 'QR code: %s' % code.decode()
+ return img + ' QR code: %s' % code.decode()
 
 print qr_decode("img0.png")
 print qr_decode("img1.png")
