@@ -22,7 +22,8 @@ def main():
 #        cv2.imshow('gray', gray)
 
         for decoded in zbar_image:
-            print(decoded.data)
+            text = decoded.data
+            print text
 
 
 if __name__ == "__main__":
