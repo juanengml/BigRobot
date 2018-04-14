@@ -2,7 +2,7 @@ import zbar
 
 from PIL import Image
 import cv2
-
+comp = open("dados","rb").read().split("\n\n")[0].split("\n")
 
 def main():
     
@@ -23,8 +23,10 @@ def main():
 
         for decoded in zbar_image:
             text = decoded.data
-            print text
-
+#            print text
+            for p in range(len(comp)):
+                if text == comp[p]:
+                   print "TEXT:",text,"\t COMPARAR:",comp[p]
 
 if __name__ == "__main__":
     main()
