@@ -4,7 +4,7 @@ from PIL import Image
 import cv2
 
 
-def decode_qrcode():
+def main():
     capture = cv2.VideoCapture(0)
     ret, ibagem = capture.read()
     gray = cv2.cvtColor(ibagem, cv2.COLOR_BGR2GRAY)
@@ -13,7 +13,7 @@ def decode_qrcode():
     zbar_image = zbar.Image(width, height, 'Y800', image.tostring())
     scanner = zbar.ImageScanner()
     scanner.scan(zbar_image)
-    cv2.imshow('Detect QRCODE', frame) DESCOMENTE SE QUISER MODAFOKA
+    cv2.imshow('Detect QRCODE', ibagem) #DESCOMENTE SE QUISER MODAFOKA
 #        cv2.imshow('gray', gray)
     for decoded in zbar_image:
             text = decoded.data
