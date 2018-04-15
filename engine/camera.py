@@ -61,7 +61,7 @@ def TrataImagem(img):
     if (QtdeContornos > 0):
         cv2.line(img,PontoCentralContorno,(width/2,CoordenadaYCentroContorno),(0,255,0),1)
     
-    cv2.imshow('Analise de rota',img)
+    cv2.imshow('Analise de rota DA OBR',img)
     cv2.waitKey(10)
     return DirecaoASerTomada, QtdeContornos
 
@@ -91,9 +91,9 @@ while True:
              continue
         
           if (Direcao > 0):
-              print "Distancia da linha de referencia: "+str(abs(Direcao))+" pixels a direita"
+              print "Distancia da linha de referencia: "+str(abs(Direcao))+" pixels a [DIREITA]"
           if (Direcao < 0):
-              print "Distancia da linha de referencia: "+str(abs(Direcao))+" pixels a esquerda"      
+              print "Distancia da linha de referencia: "+str(abs(Direcao))+" pixels a [ESQUERDA]"      
           if (Direcao == 0):
               print "Exatamente na linha de referencia!"      
     except (KeyboardInterrupt):
