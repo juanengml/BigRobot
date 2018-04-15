@@ -26,6 +26,8 @@ def TrataImagem(img):
     
     #descomente as linhas abaixo se quiser ver o frame apos binarizacao, dilatacao e inversao de cores
     #cv2.imshow('F.B.',FrameBinarizado)
+    #cv2.imshow('F.B.1',gray)
+    
     #cv2.waitKey(10)
 
     _, cnts, _ = cv2.findContours(FrameBinarizado.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
