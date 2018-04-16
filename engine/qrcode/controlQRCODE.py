@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import zbar # IMPORTA BIBLIOTECA PARA ANALISAR QRCODE #
 from PIL import Image # IMPORTA BIBLIOTECA PARA DA IMAGEM #
 import cv2 # IMPORTA BIBLIOTECA DE VISÃO COMPUTACIONAL PARA CONVERTER DADOS DA IMAGEM
@@ -5,7 +8,7 @@ comp = open("dados","rb").read().split("\n\n")[0].split("\n")  # LER DADOS SALVO
 
 def main(): # FUNCAO MAIN PARA PROCESSAR IMAGEM
     
-    capture = cv2.VideoCapture(0) # ACESSA CAMERA PARA CAPTURAR OS FRAMES
+    capture = cv2.VideoCapture(1) # ACESSA CAMERA PARA CAPTURAR OS FRAMES
 
     while True:
         if cv2.waitKey(1) & 0xFF == ord('q'): # SE TECLA Q APERTADA ELE STOP O SERVICO
