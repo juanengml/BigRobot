@@ -29,10 +29,10 @@ def TrataImagem(img):
     FrameBinarizado = cv2.bitwise_not(FrameBinarizado)
     
     #descomente as linhas abaixo se quiser ver o frame apos binarizacao, dilatacao e inversao de cores
-    cv2.imshow('F.B.',FrameBinarizado)
-    cv2.imshow('F.B.1',gray)
+#    cv2.imshow('F.B.',FrameBinarizado)
+#    cv2.imshow('F.B.1',gray)
     
-    cv2.waitKey(10)
+#    cv2.waitKey(10)
 
     _, cnts, _ = cv2.findContours(FrameBinarizado.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cv2.drawContours(img,cnts,-1,(255,0,255),3)
@@ -67,15 +67,15 @@ def TrataImagem(img):
     if (QtdeContornos > 0):
         cv2.line(img,PontoCentralContorno,(width/2,CoordenadaYCentroContorno),(0,255,0),1)
     
-    cv2.imshow('Analise de rota DA OBR',img)
-    cv2.waitKey(10)
+ #   cv2.imshow('Analise de rota DA OBR',img)
+  #  cv2.waitKey(10)
     return DirecaoASerTomada, QtdeContornos
 
 
 #Programa principal
 
 
-camera = cv2.VideoCapture("simulacao.mp4")
+camera = cv2.VideoCapture(0)
 camera.set(3,320)
 camera.set(4,240)
 
