@@ -13,6 +13,10 @@ void setup() {
  pinMode(pin2,OUTPUT);
  pinMode(pin3,OUTPUT);
  pinMode(pin4,OUTPUT);
+<<<<<<< HEAD:arduino/code/move/move.ino
+=======
+ Serial.println("BigRobot RUNNING...");
+>>>>>>> a81d51f70f08ef164e4d341d1a4be5a4cc040013:arduino/code/move/move.ino
 }
 
 void loop() {
@@ -45,20 +49,30 @@ void loop() {
         Serial.println("MOTOR 3 DIRECAO: (DIREITA)");
         digitalWrite(pin1,LOW);
         digitalWrite(pin2,HIGH);
+<<<<<<< HEAD:arduino/code/move/move.ino
         delay(40);
         digitalWrite(pin3,LOW);
         digitalWrite(pin4,LOW);
         delay(40);
+=======
+        digitalWrite(pin3,LOW);
+        digitalWrite(pin4,LOW);
+>>>>>>> a81d51f70f08ef164e4d341d1a4be5a4cc040013:arduino/code/move/move.ino
 
     break;
     case 'a':
      Serial.println("MOTOR 3 DIRECAO: (ESQUERDA");
      digitalWrite(pin1,HIGH);
      digitalWrite(pin2,LOW);
+<<<<<<< HEAD:arduino/code/move/move.ino
      delay(40);
      digitalWrite(pin3,LOW);
      digitalWrite(pin4,LOW);
      delay(40);
+=======
+     digitalWrite(pin3,LOW);
+     digitalWrite(pin4,LOW);
+>>>>>>> a81d51f70f08ef164e4d341d1a4be5a4cc040013:arduino/code/move/move.ino
 
     break;
 
