@@ -63,7 +63,7 @@ def TrataImagem(img):
     if (QtdeContornos > 0):
         cv2.line(img,PontoCentralContorno,(width/2,CoordenadaYCentroContorno),(0,255,0),1)
     
-#    cv2.imshow('Analise de rota DA OBR',img)
+    cv2.imshow('Analise de rota DA OBR',img)
     cv2.waitKey(10)
     return DirecaoASerTomada, QtdeContornos
 

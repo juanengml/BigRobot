@@ -8,9 +8,9 @@ import cv2
 greenLower = (29, 86, 6)
 greenUpper = (64, 255, 255)
 
-#camera = cv2.VideoCapture("circulosimulation.mp4")
+camera = cv2.VideoCapture("circulosimulation.mp4")
 
-camera = cv2.VideoCapture(0)
+#camera = cv2.VideoCapture(0)
 
 while True:
 	(grabbed, frame) = camera.read()
