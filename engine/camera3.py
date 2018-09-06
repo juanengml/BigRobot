@@ -63,7 +63,8 @@ def TrataImagem(img):
     if (QtdeContornos > 0):
         cv2.line(img,PontoCentralContorno,(width/2,CoordenadaYCentroContorno),(0,255,0),1)
     
-    cv2.imshow('Analise de rota DA OBR',img)
+    
+    cv2.imshow('Analise de rota DA OBR',img) 
     cv2.waitKey(10)
     return DirecaoASerTomada, QtdeContornos
 
@@ -74,6 +75,12 @@ def TrataImagem(img):
 camera = cv2.VideoCapture("simulacao.mp4")
 camera.set(3,320)
 camera.set(4,240)
+
+
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+
+out = cv2.VideoWriter('output.mp4',fourcc, 20.0, (640,480))
+
 
 #faz algumas leituras de frames antes de consierar a analise
 #motivo: algumas camera podem demorar mais para se "acosumar a luminosidade" quando ligam, capturando frames consecutivos com muita variacao de luminosidade. Para nao levar este efeito ao processamento de imagem, capturas sucessivas sao feitas fora do processamento da imagem, dando tempo para a camera "se acostumar" a luminosidade do ambiente
@@ -88,6 +95,7 @@ while True:
             break
       if (grabbed):
           Direcao,QtdeLinhas = TrataImagem(Frame)
+          out.write(Frame)
           if (QtdeLinhas == 0):
              print "Nenhuma linha encontrada. O robo ira parar."
              continue
@@ -101,4 +109,8 @@ while True:
     except (KeyboardInterrupt):
           print "STOP MODA FOCA"
           break;
+
+out.release()
+camera.release()
+cv2.destroyAllWindows()
 exit(1)   
