@@ -4,7 +4,6 @@ import numpy as np
 LimiarBinarizacao = 125       #este valor eh empirico. Ajuste-o conforme sua necessidade 
 AreaContornoLimiteMin = 5000  #este valor eh empirico. Ajuste-o conforme sua necessidade 
 
-
 #Funcao: trata imagem e retorna se o robo seguidor de linha deve ir para a esqueda ou direita
 #Parametros: frame capturado da webcam e primeiro frame capturado
 #Retorno: < 0: robo deve ir para a direita

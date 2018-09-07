@@ -1,14 +1,26 @@
 import serial
 import psutil
 
-try:
-  arduino = serial.Serial("/dev/ttyUSB0",9600)
-except:
-  arduino = serial.Serial("/dev/ttyACM0",9600)
-  try:
-    arduino = serial.Serial("/dev/ttyACM1",9600)
-  except:
+
+def STATUS_COM(decision):
+
+ status = False
+ try:
+   arduino = serial.Serial("/dev/ttyUSB0",9600)
+   status = True
+ except:
+   try:
+    arduino = serial.Serial("/dev/ttyACM0",9600)
+    status = True
+   except:
     arduino = ""
+    status = False
+ if status == True:
+        arduino.write(decision)
+ if status == False:
+        print "PORTA COM ARDUINO NAO DETECTADO"
+
+
 
 class Move:
   def __init__(self,direcao):
@@ -16,7 +28,7 @@ class Move:
   def mover(self):
    if self.direcao == 'w':
       print "w -  FRENTE"
-      arduino.write('w')
+      STATUS_COM('w')
 
    if self.direcao == "s": 
       print "s - RE"
@@ -51,7 +63,7 @@ class Sensores:
             cm = arduino.write("distancia")
             cm = cm
             return cm
-  def gps:
+  def gps(self):
     if self.gps == True:
         # GET COORDINATES ON GPS SENSOR
         #
