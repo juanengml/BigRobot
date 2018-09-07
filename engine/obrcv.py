@@ -17,7 +17,7 @@ class Camera:
          if (grabbed):
            dado = pre_processing(Frame)
            Direcao, Qtdlines = dado.TratarImagem()
-           print Direcao,Qtdlines
+           print "Direcao: " ,Direcao,"Quantidade de Linhas: ",Qtdlines
            return  Direcao,Qtdlines
   
     def cor(self):
@@ -28,14 +28,15 @@ class Camera:
        if self.detect_circle == 1:
          (grabbed, Frame) = camera.read()
          if (grabbed):
-           bola = pre_processing(Frame).TratarCircle()
+           dado = pre_processing(Frame)
+           bola = dado.TratarCircle()
            return bola
      
 
 
 
 #camera = cv2.VideoCapture(0)
-camera = cv2.VideoCapture("simulacao.mp4")
+#camera = cv2.VideoCapture("simulacao.mp4") # line
 camera.set(3,320)
 camera.set(4,240)
 LimiarBinarizacao = 125       #este valor eh empirico. Ajuste-o conforme sua necessidade 

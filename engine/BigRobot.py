@@ -23,28 +23,31 @@ def STATUS_COM(decision):
 
 
 class Move:
-  def __init__(self,direcao):
+  def __init__(self,comand,direcao):
    self.direcao = direcao
+   self.comand = comand
+ 
   def mover(self):
-   if self.direcao == 'w':
+   if self.comand == "w":
       print "w -  FRENTE"
       STATUS_COM('w')
 
-   if self.direcao == "s": 
-      print "s - RE"
-      arduino.write('s')
+   if self.comand == "s": 
+      print "s - BACK"
+      STATUS_COM('s')
 
-   if self.direcao == "a":
+   if self.comand == "a":
       print "a - ESQUERDA"
-      arduino.write('a')
-
-   if self.direcao == "d":
+      STATUS_COM('a')
+   
+   if self.comand == "d":
       print "d - direita "
-      arduino.write('d')
+      STATUS_COM('d')
 
-   if self.direcao == "p":
+   if self.comand == "p":
       print "p - stop"
-      arduino.write('p')
+      STATUS_COM('p')
+
 
 class Sensores:
   def __init__(self,distancia, bateria,gps):
