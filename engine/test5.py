@@ -38,12 +38,13 @@ while True:
 		((x, y), radius) = cv2.minEnclosingCircle(c)
 		M = cv2.moments(c)
 		center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
+		print "circle detect !",center
  		if radius > 10:
 			cv2.circle(frame, (int(x), int(y)), int(radius),
 				(0, 255, 255), 2)
 			cv2.circle(frame, center, 5, (0, 0, 255), -1)
- 
-		
+	else:
+		print "+++++++circle not detect ! ++++++++++/"
 	# show the frame to our screen
 	cv2.imshow("Frame", frame)
 	key = cv2.waitKey(1) & 0xFF
