@@ -37,8 +37,8 @@ class Camera:
 
 
 #camera = cv2.VideoCapture(0)
-camera = cv2.VideoCapture("simulacao.mp4") # line
-#camera = cv2.VideoCapture("circulosimulation.mp4")
+#camera = cv2.VideoCapture("simulacao.mp4") # line
+camera = cv2.VideoCapture("circulosimulation.mp4")
 camera.set(3,320)
 camera.set(4,240)
 LimiarBinarizacao = 125       #este valor eh empirico. Ajuste-o conforme sua necessidade 
