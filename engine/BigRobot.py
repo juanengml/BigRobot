@@ -6,17 +6,20 @@ def STATUS_COM(decision):
 
  status = False
  try:
-   arduino = serial.Serial("/dev/ttyUSB0",9600)
+   arduino = serial.Serial("/dev/ttyACM0",9600)
    status = True
+   print "PORTA COM /dev/ttyACM0 ENCONTRADA"
  except:
    try:
-    arduino = serial.Serial("/dev/ttyACM0",9600)
+    arduino = serial.Serial("/dev/ttyACM1",9600)
     status = True
+    print "PORTA COM /dev/ttyACM1 ENCONTRADA"
    except:
     arduino = ""
     status = False
  if status == True:
         arduino.write(decision)
+        print "COMANDO ENVIADO: ",decision
  if status == False:
         print "PORTA COM ARDUINO NAO DETECTADO"
 
