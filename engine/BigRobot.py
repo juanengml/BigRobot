@@ -19,7 +19,7 @@ def STATUS_COM(decision):
     status = False
  if status == True:
         arduino.write(decision)
-        print "COMANDO ENVIADO: ",decision
+        print "COMANDO ENVIADO:  ",decision
  if status == False:
         print "PORTA COM ARDUINO NAO DETECTADO"
 
