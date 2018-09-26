@@ -32,5 +32,18 @@ ele consiste em um robo, simples de construir, basicamente uma caixa de gabinete
 >> print "Para iniciantes em Robotica tanto nas areas de visão computacional quando eletronica de potencia"
 # Como deve ser usado ? 
 >> print "Para fins educationais e disseminação do software livre e hardware livre"
+<<<<<<< HEAD
 # Procedimento para a bibliotca achar seu arduino
 ![Banana](http://cdn.osxdaily.com/wp-content/uploads/2013/07/dancing-banana.gif)
+=======
+
+# Para usar seu arduino em conjunto com a Biblioteca BigRobots 
+- PS: No ubuntu/Linux
+- Abra um terminal e procure sua placa usando o comando lsusb 
+$ ls /de/tty* 
+![ttyACM0](https://bigdanzblog.files.wordpress.com/2014/11/arduino2rpi-lstty2.png)
+![Banana](http://cdn.osxdaily.com/wp-content/uploads/2013/07/dancing-banana.gif)
+- Depois disso basta rodar o comando com a porta encontrada
+
+$ chmod 777 /dev/ttyACM0
+>>>>>>> 31392abd20db14103a9d80f8510062e0a12f83d7
