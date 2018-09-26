@@ -1,15 +1,13 @@
 import serial
 import psutil
 
+status = False
 
-def STATUS_COM(decision):
-
- status = False
- try:
+try:
    arduino = serial.Serial("/dev/ttyACM0",9600)
    status = True
    print "PORTA COM /dev/ttyACM0 ENCONTRADA"
- except:
+except:
    try:
     arduino = serial.Serial("/dev/ttyACM1",9600)
     status = True
@@ -17,11 +15,7 @@ def STATUS_COM(decision):
    except:
     arduino = ""
     status = False
- if status == True:
-        arduino.write(decision)
-        print "COMANDO ENVIADO:  ",decision
- if status == False:
-        print "PORTA COM ARDUINO NAO DETECTADO"
+ 
 
 
 
@@ -32,24 +26,47 @@ class Move:
  
   def mover(self):
    if self.comand == "w":
-      print "w -  FRENTE"
-      STATUS_COM('w')
+      print "w -  FRENTE"   
+      if status == True:
+        arduino.write("w")
+        print "COMANDO ENVIADO:  ",self.comand
+      else:
+        print "PORTA COM ARDUINO NAO DETECTADO"
 
    if self.comand == "s": 
       print "s - BACK"
-      STATUS_COM('s')
+      if status == True:
+        arduino.write("s")
+        print "COMANDO ENVIADO:  ",self.comand
+      else:
+        print "PORTA COM ARDUINO NAO DETECTADO"
 
    if self.comand == "a":
       print "a - ESQUERDA"
-      STATUS_COM('a')
+      if status == True:
+        arduino.write("a")
+        print "COMANDO ENVIADO:  ",self.comand
+      else:
+        print "PORTA COM ARDUINO NAO DETECTADO"
+
    
    if self.comand == "d":
       print "d - direita "
-      STATUS_COM('d')
+      if status == True:
+        arduino.write("d")
+        print "COMANDO ENVIADO:  ",self.comand
+      else:
+        print "PORTA COM ARDUINO NAO DETECTADO"
+
 
    if self.comand == "p":
       print "p - stop"
-      STATUS_COM('p')
+      if status == True:
+        arduino.write("p")
+        print "COMANDO ENVIADO:  ",self.comand
+      else:
+        print "PORTA COM ARDUINO NAO DETECTADO"
+
 
 
 class Sensores:

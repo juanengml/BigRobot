@@ -32,3 +32,5 @@ ele consiste em um robo, simples de construir, basicamente uma caixa de gabinete
 >> print "Para iniciantes em Robotica tanto nas areas de visão computacional quando eletronica de potencia"
 # Como deve ser usado ? 
 >> print "Para fins educationais e disseminação do software livre e hardware livre"
+# Procedimento para a bibliotca achar seu arduino
+![Banana](http://cdn.osxdaily.com/wp-content/uploads/2013/07/dancing-banana.gif)
