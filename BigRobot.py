@@ -1,52 +1,49 @@
+# -*- coding: cp1252 -*-
+import paho.mqtt.client as mqtt
 import serial
 import psutil
 
+TOPIC = "/robot/rover/"
 
-def STATUS_COM(decision):
+client = mqtt.Client()
+# conecta no broker
+client.connect("192.168.100.3", 1883)
+
+
+def STATUS_COM():
 
  status = False
  try:
    arduino = serial.Serial("/dev/ttyUSB0",9600)
    status = True
+   print "Porta ttyUSB0"
  except:
    try:
     arduino = serial.Serial("/dev/ttyACM0",9600)
+    print "Porta ttyACM0"
     status = True
    except:
     arduino = ""
     status = False
- if status == True:
-        arduino.write(decision)
- if status == False:
-        print "PORTA COM ARDUINO NAO DETECTADO"
+ return status
+
 
 
 
 class Move:
+  print STATUS_COM()
   def __init__(self,comand,direcao):
    self.direcao = direcao
    self.comand = comand
- 
+  
   def mover(self):
-   if self.comand == "w":
-      print "w -  FRENTE"
-      STATUS_COM('w')
+   lista = ["w","s","d","a","p"]     
+   for p in range(len(lista)):
+    if self.comand == lista[p]: 
+      print p,lista[p]
+      print (arduino.write(lista[p]) if STATUS_COM() else "Port not found !")
+      client.publish(TOPIC,lista[p])
 
-   if self.comand == "s": 
-      print "s - BACK"
-      STATUS_COM('s')
-
-   if self.comand == "a":
-      print "a - ESQUERDA"
-      STATUS_COM('a')
-   
-   if self.comand == "d":
-      print "d - direita "
-      STATUS_COM('d')
-
-   if self.comand == "p":
-      print "p - stop"
-      STATUS_COM('p')
 
 
 class Sensores:
