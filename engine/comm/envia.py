@@ -7,7 +7,7 @@ import pyautogui
 
 client = mqtt.Client()
 # conecta no broker
-client.connect("192.168.0.14", 1883)
+client.connect("192.168.0.18", 1883)
 
 # "bloco/E/lab/302/SENSOR/JANELA/1
 # "home/sala/janela/01/status/"
@@ -22,16 +22,16 @@ while True:
         #buttons=['arido', 'seco','umido','molhado','SAIR','reset'])     
     if menu=='RUN':
        print menu
-       client.publish("/bigrobot/v1/status/", menu)       
+       client.publish("/bigrobot/v1/status/", 'w')       
     if menu=='LEFT':
        print menu
-       client.publish("/bigrobot/v1/status/", menu)       
+       client.publish("/bigrobot/v1/status/", 'a')       
     if menu=='RIGHT':
        print menu
-       client.publish("/bigrobot/v1/status/", menu)       
+       client.publish("/bigrobot/v1/status/", 'd')       
     if menu=='STOP':
        print menu
-       client.publish("/bigrobot/v1/status/", menu)       
+       client.publish("/bigrobot/v1/status/", 's')       
 
     if menu=='SAIR': 
         print "EXIT PROGRAMMM"

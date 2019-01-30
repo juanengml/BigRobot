@@ -1,15 +1,14 @@
 import paho.mqtt.client as mqtt
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 import json
 
 
 
-THINGSBOARD_HOST = 'olamundo.com'
-ACCESS_TOKEN = '123456'
+THINGSBOARD_HOST = 'delrey.td.utfpr.edu.br'
+ACCESS_TOKEN = '5Xlz1Mf794hZwDq2o4fB'
 
 # We assume that all GPIOs are LOW
-gpio_state = {7: False, 11: False, 12: False, 13: False, 15: False, 16: False, 18: False, 22: False, 29: False,
-              31: False, 32: False, 33: False, 35: False, 36: False, 37: False, 38: False, 40: False}
+gpio_state = {7: False, 11: False, 12: False}
 
 
 # The callback for when the client receives a CONNACK response from the server.
@@ -23,9 +22,10 @@ def on_connect(client, userdata, rc, *extra_params):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print 'Topic: ' + msg.topic + '\nMessage: ' + str(msg.payload)
+    print '\tTopic: ' + msg.topic + '\n\tMessage: ' + str(msg.payload)
     # Decode JSON request
     data = json.loads(msg.payload)
+    print data['params']['pin'], data['params']['enabled']
     # Check request method
     if data['method'] == 'getGpioStatus':
         # Reply with GPIO status
@@ -39,6 +39,7 @@ def on_message(client, userdata, msg):
 
 def get_gpio_status():
     # Encode GPIOs state to json
+    print gpio_state
     return json.dumps(gpio_state)
 
 
@@ -50,10 +51,10 @@ def set_gpio_status(pin, status):
 
 
 # Using board GPIO layout
-GPIO.setmode(GPIO.BOARD)
-for pin in gpio_state:
+#GPIO.setmode(GPIO.BOARD)
+#for pin in gpio_state:
     # Set output mode for all GPIO pins
-    GPIO.setup(pin, GPIO.OUT)
+#    GPIO.setup(pin, GPIO.OUT)
 
 client = mqtt.Client()
 # Register connect callback
@@ -68,5 +69,6 @@ client.connect(THINGSBOARD_HOST, 1883, 60)
 try:
     client.loop_forever()
 except KeyboardInterrupt:
-    GPIO.cleanup()
+	print "NULL"
+    #GPIO.cleanup()
 
