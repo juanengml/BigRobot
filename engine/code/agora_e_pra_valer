@@ -3,7 +3,7 @@ import sys
 import cv2
 
 pulaquadros = 0.5
-captura = cv2.VideoCapture(0)
+captura = cv2.VideoCapture(1)
 contadorquadros = 0
 detector = dlib.simple_object_detector("../classificadores/classificador_bigrobot2.svm")
 
