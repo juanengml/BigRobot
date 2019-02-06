@@ -1,5 +1,6 @@
 import serial
 import psutil
+import random 
 
 status = False
 
@@ -68,6 +69,9 @@ class Move:
         print "PORTA COM ARDUINO NAO DETECTADO"
 
 
+def data():
+   return random.choice(range(0,10000))
+
 
 class Sensores:
   def __init__(self,distancia, bateria,gps):
@@ -83,12 +87,14 @@ class Sensores:
 
   def distance(self):
      if self.distancia == True:
-            cm = arduino.write("distancia")
-            cm = cm
-            return cm
+      try:
+        cm = arduino.write("distancia")
+        cm = cm
+        print cm
+      except Exception as e:
+        cm = data()
+        print cm
+            
   def gps(self):
-    if self.gps == True:
-        # GET COORDINATES ON GPS SENSOR
-        #
-        #
         pass
+        
