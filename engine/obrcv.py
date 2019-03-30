@@ -7,8 +7,8 @@ from time import sleep
 import random
 
 #camera = cv2.VideoCapture(0)
-#camera = cv2.VideoCapture("simulacao.mp4") # line
-camera = cv2.VideoCapture("circulosimulation.mp4")
+camera = cv2.VideoCapture("simulacao.mp4") # line
+#camera = cv2.VideoCapture("circulosimulation.mp4")
 camera.set(3,320)
 camera.set(4,240)
 LimiarBinarizacao = 125       #este valor eh empirico. Ajuste-o conforme sua necessidade 
@@ -22,13 +22,39 @@ def rgb():
 
 
 
-class Camera:
+class Connect_Camera(object):
+  
+  def __init__(self,url,local,simulacao):
+    self.url = url
+    self.local = local
+    self.simulacao = simulacao
+
+  def remote_cam(self):
+    imgResp =  urllib.urlopen(self.url)
+    imgNp   =  np.array(bytearray(imgResp.read()),dtype=np.uint8)
+    img=cv2.imdecode(imgNp,-1)
+    frame0 = img
+    return frame0
+
+  def usb_cam(self):
+    camera = cv2.VideoCapture(0)
+    return camera
+    pass
+  
+  def simulation_cam(self):
+    pass
+ 
+    
+
+
+
+class Camera(object):
     
     def __init__(self,detect_line,detect_color, detect_circle):
        self.detect_line = detect_line 
        self.detect_color = detect_color
        self.detect_circle = detect_circle
-       #pass
+
     def Line(self): ## dar direcao ao robo
       if self.detect_line == 1:
          (grabbed, Frame) = camera.read()
@@ -49,6 +75,7 @@ class Camera:
            dado = pre_processing(Frame)
            bola,centro = dado.TratarCircle()
            return bola,centro
+    
      
 
 
