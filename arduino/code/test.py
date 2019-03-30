@@ -2,12 +2,14 @@ import serial
 import psutil
 
 bat = psutil.sensors_battery()[0]
+
 import os
+
 try:
  ser = serial.Serial("/dev/ttyACM0",9600)
 except:
  try:
-   ser = serial.Serial("/dev/ttyACM2",9600)
+   ser = serial.Serial("/dev/ttyACM1",9600)
  except:
    try:
       ser = serial.Serial("/dev/ttyUSB0",9600)

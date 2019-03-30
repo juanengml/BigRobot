@@ -79,6 +79,22 @@ class Camera(object):
      
 
 
+<<<<<<< HEAD
+
+#camera = cv2.VideoCapture(0)
+camera = cv2.VideoCapture("simulacao.mp4") # line
+#camera = cv2.VideoCapture("circulosimulation.mp4")
+camera.set(3,320)
+camera.set(4,240)
+LimiarBinarizacao = 125       #este valor eh empirico. Ajuste-o conforme sua necessidade 
+AreaContornoLimiteMin = 5000  #este valor eh empirico. Ajuste-o conforme sua necessidade 
+
+greenLower = (29, 86, 6)
+greenUpper = (64, 255, 255)
+ 
+
+=======
+>>>>>>> 3d480dd9f03522ba6062442f168b978c10b89863
    
 class pre_processing:
    def __init__(self,img):

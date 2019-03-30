@@ -1,0 +1,35 @@
+import dlib
+import sys
+import cv2
+import serial
+import time
+
+ser = serial.Serial('/dev/ttyACM1', 9600)
+
+
+
+##pulaquadros = 0.5
+captura = cv2.VideoCapture(0)
+contadorquadros = 0
+detector = dlib.simple_object_detector("./classiferBigRobot.svm")
+
+
+while captura.isOpened():
+    conectado, frame = captura.read()
+    objetosdetectados = detector(frame, 1)
+    for o in objetosdetectados:
+            e, t, d, f = (int(o.left()), int(o.top()), int(o.right()), int(o.bottom()))
+            cv2.rectangle(frame, (e, t), (d, f), (0, 0, 255), 2)
+            cv2.putText(frame, 'BigRobots', (e,t-10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,232,0), 2)
+            ser.write('a')
+            time.sleep(1)
+
+    cv2.imshow("Detect BigRobots", frame)
+    print("direita")       
+    if cv2.waitKey(1) & 0xFF == 27:
+            break
+
+
+captura.realease()
+cv2.destroyAllWindows()
+sys.exit(0)
